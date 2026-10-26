@@ -1,0 +1,44 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: et-demo
+  description: demo
+  tags:
+    - python
+    - flask
+    - postgresql
+    - secure-by-default
+  annotations:
+    backstage.io/techdocs-ref: dir:.
+    github.com/project-slug: devabm26/et-demo
+    dev.redhat.com/devspaces-url: https://devspaces.apps.cluster-6pfqs.6pfqs.sandbox2325.opentlc.com/#https://github.com/devabm26/et-demo
+    backstage.io/kubernetes-id: et-demo
+    backstage.io/kubernetes-namespace: thoughts-app 
+    janus-idp.io/tekton: et-demo
+  links:
+    - url: https://github.com/devabm26/et-demo
+      title: View Source
+      icon: github
+    - url: https://devspaces.apps.cluster-pjx5k.dyn.redhatworkshops.io/#https://github.com/devabm26/et-demo
+      title: Open in DevSpaces
+      icon: dashboard
+spec:
+  type: service
+  lifecycle: production
+  owner: user:default/user5
+  providesApis:
+    - et-demo-api
+
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: et-demo-api
+  description: REST API for et-demo
+spec:
+  type: openapi
+  lifecycle: production
+  owner: user:default/user5
+  definition:
+    $text: ./openapi.yaml
